@@ -107,7 +107,7 @@ def get_emails_from_text(text):
 def get_emails(paper_name):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': 'eac6a9fae115422281d64a566bac84d7',
+        'Ocp-Apim-Subscription-Key': 'xxxx',
     }
 
     stripPunctuation = r'[^A-zÀ-ÿ\d\s]'
