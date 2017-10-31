@@ -64,9 +64,12 @@ def get_emails_from_text(text):
                 look = 1
             emaillist2.append(name + address_extension)
             j = i - 1
-            while ((len(re.findall(r"{", new_tokens[j])) == 0) & (look == 1) & (j >= 1)):
+            while ((len(re.findall(r"{", new_tokens[j])) == 0) and (look == 1) and (j >= 1)):
                 emaillist2.append(new_tokens[j] + address_extension)
                 j = j - 1
+            if look == 1 and '{' in new_tokens[j]:
+                emaillist2.append(new_tokens[j].replace('{','') + address_extension)
+                print(emaillist2)
             if ((look == 1) & (j == 0)):
                 emaillist2 = []
             emaillist2.reverse()
@@ -81,7 +84,7 @@ def get_emails_from_text(text):
             for j in range(i + 1, len(new_tokens)):
                 if new_tokens[j].lower() in list_of_urls:
                     email_string = email_string + new_tokens[j]
-                    break;
+                    break
                 else:
                     if (new_tokens[j] == "DOT"):
                         email_string = email_string + '.'
@@ -170,4 +173,5 @@ def get_emails(paper_name):
 
 paper_name = input("Enter the name of the paper for which you want email addresses:\n")
 get_emails(paper_name)
+
 
