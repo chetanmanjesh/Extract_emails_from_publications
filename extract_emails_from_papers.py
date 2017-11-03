@@ -254,6 +254,9 @@ def match_emails_to_ordered_authors(emails, authors):
 
     return email_order_list
 
+print('harry potter is the best movue series')
+print('goblet of fire')
+print('harry potter and the sorcerer\'s stone')
 
 paper_name = input("Enter the name of the paper for which you want email addresses:\n")
 
