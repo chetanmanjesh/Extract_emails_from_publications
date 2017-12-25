@@ -31,6 +31,8 @@ def get_pdf_contents(download_url):
         return ([],
                 0)  # alerts the calling function that the link that was passed to it for processing couldn't be handled correctly
     text = file.read()
+    os.system('rm doc_final.pdf')
+    os.system('rm doc_final.txt')
     return text
 
 
@@ -71,7 +73,6 @@ def get_emails_from_text(text):
                 j = j - 1
             if look == 1 and '{' in new_tokens[j]:
                 emaillist2.append(new_tokens[j].replace('{', '') + address_extension)
-                print(emaillist2)
             if ((look == 1) & (j == 0)):
                 emaillist2 = []
             emaillist2.reverse()
@@ -104,15 +105,13 @@ def get_emails_from_text(text):
             email_list.append(email)
     # write the downloaded link into a file
     email_list = [e.lower() for e in email_list]
-    os.system('rm doc_final.pdf')
-    os.system('rm doc_final.txt')
     return email_list
 
 
 def get_emails(paper_name):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': 'xxxx',
+        'Ocp-Apim-Subscription-Key': 'edd066f1189743d7befe147e91e118bd',
     }
 
     stripPunctuation = r'[^A-zÀ-ÿ\d\s]'
@@ -169,6 +168,8 @@ def get_emails(paper_name):
             # print("The url is", pdf_url)
             pdf_text = get_pdf_contents(pdf_url)
             emails = get_emails_from_text(pdf_text)
+            if(len(emails)>0):
+                break
 
     if (pdf_link_present == 0):
         print("No link available")
@@ -178,7 +179,7 @@ def get_emails(paper_name):
 def get_author_names(paper_name):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': 'xxxx',
+        'Ocp-Apim-Subscription-Key': 'edd066f1189743d7befe147e91e118bd',
     }
 
     stripPunctuation = r'[^A-zÀ-ÿ\d\s]'
@@ -213,7 +214,6 @@ def get_author_names(paper_name):
 
     # metadata response is an array of bytes, needs to be converted to a string
     metadata_str = data.decode('utf-8')
-
     # metadata dictionary is encoded as String, converted into a Python dict
     metadata_dict = json.loads(metadata_str)
     # extract dict of extended metadata from metadata
@@ -254,9 +254,6 @@ def match_emails_to_ordered_authors(emails, authors):
 
     return email_order_list
 
-print('harry potter is the best movue series')
-print('goblet of fire')
-print('harry potter and the sorcerer\'s stone')
 
 paper_name = input("Enter the name of the paper for which you want email addresses:\n")
 
