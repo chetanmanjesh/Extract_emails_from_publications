@@ -111,7 +111,7 @@ def get_emails_from_text(text):
 def get_emails(paper_name):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': 'edd066f1189743d7befe147e91e118bd',
+        'Ocp-Apim-Subscription-Key': 'xxxx',
     }
 
     stripPunctuation = r'[^A-zÀ-ÿ\d\s]'
@@ -179,7 +179,7 @@ def get_emails(paper_name):
 def get_author_names(paper_name):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': 'edd066f1189743d7befe147e91e118bd',
+        'Ocp-Apim-Subscription-Key': 'xxxx',
     }
 
     stripPunctuation = r'[^A-zÀ-ÿ\d\s]'
